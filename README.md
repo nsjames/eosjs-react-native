@@ -93,5 +93,20 @@ Now you can try running the project, make sure the good HTTP address is set to y
 react-native run-ios //or - react-native run-android
 ```
 
+_Note: If you're getting conflicts in `buildToolVersion` or `compileSdkVersion` you can add this to the end of your base build.gradle ( not the app/build.gradle ) file and specify the version you are using project-wide_
+
+```
+subprojects {
+    afterEvaluate {project ->
+        if (project.hasProperty("android")) {
+            android {
+                compileSdkVersion 26
+                buildToolsVersion '26.0.3'
+            }
+        }
+    }
+}
+```
+
 ## Roadmap and contribution
 Contribution would be really appreciated. One day this library could properly map eosjs into a react-native package we can use the node package manager `npm` to install directly in a react-native project without the manual tweaking.
